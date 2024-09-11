@@ -8,7 +8,10 @@ def main_planner(guests: int) -> None:
     print("A Cozy Tea Party for", guests, "People")
     print("Tea Bags:", tea_bags(guests))
     print("Treats:", treats(guests))
-    print("Cost:", str("$") + str(cost(tea_bags(guests), treats(guests))))
+    print(
+        "Cost:", str("$") + str(cost(tea_bags(guests), treats(guests)))
+    )  # Defines a function to print out the returns of all functions in one comprehensive summary.
+    # Return type is None since we are only printing and not returning any outputs to the function caller.
 
 
 # Cost wasn't working because it was expecting 2 variables and I was only giving it 1.
@@ -26,18 +29,22 @@ def main_planner(guests: int) -> None:
 
 def tea_bags(people: int) -> int:
     """Calculate amount of tea bags needed"""
-    return people * 2
+    return (
+        people * 2
+    )  # Multiplies the amount of people attending by 2. Returns value to function caller.
 
 
 def treats(people: int) -> int:
     """Calculate amount of treats need"""
-    return round(tea_bags(people=people) * 1.5)
+    return int(
+        tea_bags(people=people) * 1.5
+    )  # Takes the value held by people in tea_bags and multiplies it by 1.5.
 
 
-# I was having a lot of issues with the treats function until I looked at CL03,
-# and I realized that the round() function takes out all decimals
-# because it's rounding numbers with decimals to whole numbers. Theoretically,
-# I assumed that meant it might convert floats to ints as a result. I tried it and it worked!
+# Converts to an int and returns to function caller.
+
+
+# Took out round() which I was originally using and just put int() instead.
 
 # Read closely on the error it was giving me for keyword argument and realized that with the return
 # given by treats, it was treating people as its own parameter instead of taking
@@ -46,11 +53,18 @@ def treats(people: int) -> int:
 
 def cost(tea_count: int, treat_count: int) -> float:
     """Calculate total cost for amount of tea bags and treats"""
-    return (tea_count * 0.5) + (treat_count * 0.75)
+    return (tea_count * 0.5) + (
+        treat_count * 0.75
+    )  # Multiplies the inputted counts by 0.5 for tea_count and by 0.75 for treat_count.
+
+
+# Returns to function caller. Outputs to a float due to decimals being involved.
 
 
 # Tried both equalling people to tea_count/treat_count and calling functions
 # until I realized the solution was way simpler than that.
 
 if __name__ == "__main__":
-    main_planner(guests=int(input("How many guests are attending your tea party? ")))
+    main_planner(
+        guests=int(input("How many guests are attending your tea party? "))
+    )  # Makes program runnable.
